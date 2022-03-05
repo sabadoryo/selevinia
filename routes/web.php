@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'selevinia backend';
+});
+
+Route::get('/route-list', function() {
+    $routeCollection = Route::getRoutes();
+
+    $txt = "";
+
+    foreach ($routeCollection->getRoutes() as $route) {
+        $methods = implode('-', $route->methods);
+
+        $txt .= "$methods | $route->uri |<br>";
+    }
+
+    return $txt;
 });

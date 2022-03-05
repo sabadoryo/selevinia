@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('archives', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('category_id');
-            $table->longText('content');
-            $table->string('preview_small_image_path'); 
+            $table->string('title');
+            $table->longText('description');
+            $table->integer('year');
+            $table->integer('tome');
+            $table->string('document_path');
+            $table->string('preview_small_image_path');
             $table->string('preview_big_image_path');
             $table->timestamps();
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
         });
     }
 
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('archives');
     }
 };
