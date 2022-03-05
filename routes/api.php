@@ -25,9 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/kek', function (){
+    return response()->json(['error' => 'unauthenticated']);
+});
+
 Route::group([
     'prefix' => 'admin'
-], function ($router) {
+], function () {
 
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
