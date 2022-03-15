@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Subscription;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubscribeRequest extends FormRequest
+class GlobalSearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class SubscribeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email'
+            'search' => 'required|string'
         ];
     }
 }

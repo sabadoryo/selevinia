@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Subscription;
+namespace App\Http\Requests\Publication;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubscribeRequest extends FormRequest
+class StorePublicationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class SubscribeRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email'
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'document' => 'required|mimes:pdf',
+            'image' => 'required|image'
         ];
     }
 }

@@ -143,4 +143,11 @@ class PostController extends Controller
 
         return $this->apiResponse(null);
     }
+
+    public function getRelatedPosts($categoryId) {
+        $posts = Post::where('category_id', $categoryId)
+            ->get();
+
+        return $this->apiResponse($posts);
+    }
 }

@@ -28,6 +28,10 @@ class Post extends Model
         'preview_big_image_url'
     ];
 
+    public $with = [
+        'category'
+    ];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
