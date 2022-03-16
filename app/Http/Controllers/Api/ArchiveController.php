@@ -115,6 +115,8 @@ class ArchiveController extends Controller
             $archive->preview_big_image_path = $bigImage;
         }
 
+        dd($documentPath);
+
         $archive->document_path  = $documentPath;
         $archive->title = $data['title'];
         $archive->year = (int)$data['year'];
@@ -128,12 +130,17 @@ class ArchiveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Archive  $archive
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Archive $archive)
     {
-        //
+        Storage::disk('public')->delete($archive->document_path);
+        Storage::disk('public')->delete($archive->preview_big_image_path);
+
+        $archive->delete();
+
+        return $this->apiResponse(null);
     }
 
     public function downloadDocument(Archive $archive) {
