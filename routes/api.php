@@ -45,7 +45,8 @@ Route::resource('posts', PostController::class);
 Route::post('/posts/upload-temp-image', [PostController::class, 'uploadTempImage']);
 Route::get('/posts/related/{categoryId}', [PostController::class, 'getRelatedPosts']);
 
-Route::resource('archives', ArchiveController::class);
+Route::resource('archives', ArchiveController::class)->except('update');
+Route::post('archives/{archive}', [ArchiveController::class, 'update']);
 Route::get('archives/{archive}/download-document', [ArchiveController::class, 'downloadDocument']);
 
 Route::resource('publications', PublicationsController::class);
