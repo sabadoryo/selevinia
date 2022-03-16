@@ -115,8 +115,6 @@ class ArchiveController extends Controller
             $archive->preview_big_image_path = $bigImage;
         }
 
-        dd($documentPath);
-
         $archive->document_path  = $documentPath;
         $archive->title = $data['title'];
         $archive->year = (int)$data['year'];
