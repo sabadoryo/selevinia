@@ -65,6 +65,7 @@ class ArchiveController extends Controller
         $archive->preview_big_image_path = $bigImage;
         $archive->preview_small_image_path = $bigImage;
         $archive->document_path  = $documentPath;
+        $archive->original_document_name = $request->document->getClientOriginalName();
         $archive->title = $data['title'];
         $archive->year = (int)$data['year'];
         $archive->tome = (int)$data['tome'];
@@ -120,6 +121,7 @@ class ArchiveController extends Controller
         $archive->year = (int)$data['year'];
         $archive->tome = (int)$data['tome'];
         $archive->description = $data['description'];
+        $archive->original_document_name = $request->document->getClientOriginalName();
         $archive->save();
 
         return $this->apiResponse($archive);
@@ -144,6 +146,6 @@ class ArchiveController extends Controller
     public function downloadDocument(Archive $archive) {
         $pdf = Storage::disk('public')->path($archive->document_path);
 
-        return response()->download($pdf);
+        return response()->download($pdf, $archive->original_document_name);
     }
 }

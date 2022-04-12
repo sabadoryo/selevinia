@@ -18,7 +18,8 @@ class Archive extends Model
         'tome',
         'document_path',
         'preview_small_image_path',
-        'preview_big_image_path'
+        'preview_big_image_path',
+        'original_document_name'
     ];
 
     public $hidden = [

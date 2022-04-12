@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Subscription\SubmitMailingRequest;
 use App\Http\Requests\Subscription\SubscribeRequest;
 use App\Mail\NewSubscription;
+use App\Mail\Subscription\BasicMail;
 use App\Models\Subscribtion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -27,5 +29,14 @@ class SubscriptionController extends Controller
         Mail::to(env('ADMIN_EMAIL'))->send(new NewSubscription($request->email));
 
         return $this->apiResponse($email);
+    }
+
+    public function submitMailing(SubmitMailingRequest $request)
+    {
+        $data = $request->all();
+
+        $emails = Subscribtion::all()->pluck('email');
+
+        Mail::to($emails)->send(new BasicMail($data['body'], $data['title'] ?? '', $data['post']), $data['subject']);
     }
 }
