@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ArchiveController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AuthorController;
+use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\PagesController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\PublicationsController;
@@ -63,6 +64,11 @@ Route::group(['prefix' => 'subscriptions'], function() {
 Route::group(['prefix' => 'pages'], function() {
     Route::get('/', [PagesController::class, 'index']);
     Route::post('/store-pages', [PagesController::class, 'store']);
+});
+
+Route::group(['prefix' => 'feedbacks'], function() {
+    Route::get('/', [FeedbackController::class, 'index']);
+    Route::post('/', [FeedbackController::class, 'store']);
 });
 
 Route::get('global-search', [Controller::class, 'globalSearch']);
