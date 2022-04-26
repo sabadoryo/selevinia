@@ -7,6 +7,6 @@
 Перейти к чтению
 @endcomponent
 
-С уважением,<br>
+С уважением Редакция,<br>
 Selevinia
 @endcomponent

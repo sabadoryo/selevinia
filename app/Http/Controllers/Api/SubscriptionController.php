@@ -37,6 +37,8 @@ class SubscriptionController extends Controller
 
         $emails = Subscribtion::all()->pluck('email');
 
-        Mail::to($emails)->send(new BasicMail($data['body'], $data['title'] ?? '', $data['post']), $data['subject']);
+        foreach($emails as $email) {
+            Mail::to($email)->send(new BasicMail($data['body'], $data['title'] ?? '', $data['post']), $data['subject']);
+        }
     }
 }
