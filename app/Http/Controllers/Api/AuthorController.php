@@ -31,6 +31,8 @@ class AuthorController extends Controller
                 AllowedFilter::exact('id'),
                 AllowedFilter::scope('search', 'global_search'),
             )
+            ->defaultSort('full_name')
+            ->whereNotNull('full_name')
             ->allowedSorts(['id', 'full_name', 'created_at', 'updated_at'])
             ->paginate(request('itemsPerPage'));
 
