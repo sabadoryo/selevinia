@@ -58,6 +58,7 @@ Route::post('authors/import/excel', [AuthorController::class, 'uploadAuthorsFrom
 Route::group(['prefix' => 'subscriptions'], function() {
     Route::get('/', [SubscriptionController::class, 'index']);
     Route::post('/', [SubscriptionController::class, 'subscribe']);
+    Route::post('{subscription}/delete', [SubscriptionController::class, 'delete']);
     Route::post('send-mailing', [SubscriptionController::class, 'submitMailing']);
 });
 

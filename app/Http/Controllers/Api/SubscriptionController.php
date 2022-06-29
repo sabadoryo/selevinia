@@ -35,10 +35,16 @@ class SubscriptionController extends Controller
     {
         $data = $request->all();
 
-        $emails = Subscribtion::all()->pluck('email');
+        $emails = Subscribtion::select('email')->distinct()->pluck('email');
 
         foreach($emails as $email) {
             Mail::to($email)->send(new BasicMail($data['body'], $data['title'] ?? '', $data['post']), $data['subject']);
         }
+    }
+
+    public function delete(Subscribtion $subscription) {
+        $subscription->delete();
+
+        return $this->apiResponse([]);
     }
 }
