@@ -4,7 +4,7 @@
 @if (trim($slot) === 'Laravel')
 <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
 @else
-Зоолгический журнал-ежегодник Казахстана и Центральной Азии Selevinia
+Зоологический журнал-ежегодник Казахстана и Центральной Азии "Selevinia"
 @endif
 </a>
 </td>
